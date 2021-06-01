@@ -5,9 +5,9 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import Cart from './components/Cart'
+import SimpleCart from "./components/SimpleCart";
 // import "./index.css";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 /*
 render渲染函数 两个参数
   参数一：元素或者组件
@@ -27,10 +27,7 @@ render渲染函数 两个参数
   表达式： 什么是表达式
   凡是具有返回值的JS语句，就是一个表达式
 */
-ReactDOM.render(
-  <Cart></Cart>,
-  document.getElementById("root")
-);
+ReactDOM.render(<SimpleCart></SimpleCart>, document.getElementById("root"));
 // const DOM = document.createElement('div');
 // const ReactElement = React.createElement('div');
 // console.log('DOM',DOM);//对比真实DOM与虚拟DOM

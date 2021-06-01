@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Table, Input, Button,Checkbox  } from "antd";
+import { Table, Input, Button, Checkbox } from "antd";
 import "./cart.css";
 
 export default class Cart extends Component {
@@ -8,17 +8,29 @@ export default class Cart extends Component {
     this.state = {
       name: "",
       price: "",
+      count: 1,
       dataSource: [
         {
-          key: "1",
-          name: <Checkbox/>,
-		  nameInput: '胡彦斌1',
-		  priceInput: <Fragment><Button>+</Button>1<Button>-</Button></Fragment>
+          key: 1,
+          name: <Checkbox />,
+          nameInput: "商品名称",
+          price: "单价",
+          priceInput: "数量",
+          addProduct: "小计",
+          optional: "操作",
         },
         {
-          key: "2",
-          name: "胡彦祖2",
-          age: 42,
+          key: 2,
+          name: <Checkbox />,
+          nameInput: "衣服",
+          price: 10,
+          priceInput: (
+            <>
+              <Button>+</Button>1<Button>-</Button>
+            </>
+          ),
+          addProduct: 10,
+          optional: <Button >删除</Button>,
         },
       ],
       columns: [
@@ -59,6 +71,10 @@ export default class Cart extends Component {
           dataIndex: "addProduct",
           key: "addProduct",
         },
+        {
+          dataIndex: "optional",
+          key: "optional",
+        },
       ],
     };
   }
@@ -82,10 +98,30 @@ export default class Cart extends Component {
       }
     );
   };
-  addProduct = () => {
+  addProduct = (e) => {
     const dataSource = [...this.state.dataSource];
-    console.log(dataSource);
+    dataSource.push({
+      key: dataSource.length + 1,
+      name: <Checkbox />,
+      nameInput: this.state.name,
+      price: this.state.price,
+      priceInput: (
+        <>
+          <Button>+</Button>1<Button>-</Button>
+        </>
+      ),
+      addProduct: this.state.price,
+      optional: <Button onClick={this.removeProduct}>删除</Button>,
+    });
+	this.setState({
+		dataSource
+	},()=>{
+		console.log(this.state.dataSource);
+	})
   };
+  removeProduct = (e) =>{
+	console.log(e);
+  }
   render() {
     const { dataSource, columns } = this.state;
     return (
