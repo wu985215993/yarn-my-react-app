@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, Button, Checkbox } from "antd";
+import './SimpleCart.css'
 export default class SimpleCart extends Component {
   constructor(props) {
     super(props);
